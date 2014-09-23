@@ -1,8 +1,11 @@
 {
-  "author": "Johh Lynch",
-  "name": "react-starter-template",
+  "author": "Ben Fitzgerald",
+  "name": "Project-J-Frontend",
   "version": "1.0.0",
-  "homepage": "http://www.rigelgroupllc.com",
+  "homepage": "https://www.projectj.co",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Project-J/frontend.git"},
   "dependencies": {},
   "devDependencies": {
     "gulp": "~3.3.2",
