@@ -1,10 +1,29 @@
-# Bring in jQuery and React as a Bower component in the global namespace
-React = require "react"
-require("script!jquery/jquery.js")
+React = require 'react'
+Router = require 'react-router'
 
-App = require("./components/App.coffee")
-API   = require('./utils/API.coffee')
-ProductActionCreators   = require('./actions/ProductActionCreators.coffee')
-ProductActionCreators.receivedProduct(API.getProduct(1))
+Nav = require './components/Nav.coffee'
+Home = require './components/Home.coffee'
+Me = require './components/Me.coffee'
+Discover = require './components/Discover.coffee'
+Collections = require './components/Collections.coffee'
+Product = require './components/Product.coffee'
+NotFound = require './components/NotFound.coffee'
 
-React.renderComponent(App({}), document.getElementById('app'))
+Routes = Router.Routes
+Route = Router.Route
+Link = Router.Link
+NotFoundRoute = Router.NotFoundRoute
+DefaultRoute = Router.DefaultRoute
+
+routes =
+  Routes {},
+    Route {handler: Nav},
+      DefaultRoute {handler: Home}
+      Route {name: 'home', handler: Home, addHandlerKey: true}
+      Route {name: 'collections', handler: Collections, addHandlerKey: true}
+      Route {name: 'discover', handler: Discover, addHandlerKey: true}
+      Route {name: 'me', handler: Me, addHandlerKey: true}
+      Route {name: 'product', path:'product/:productId', handler: Product, addHandlerKey: true}
+      NotFoundRoute {handler: NotFound}
+
+React.renderComponent(routes, document.getElementById('app'))

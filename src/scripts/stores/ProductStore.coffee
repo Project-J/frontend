@@ -12,17 +12,18 @@ _imageCount = 0
 _showProductDetails = false
 _showProductLike = false
 _boughtProduct = false
+_changeListerCB = null
 
 ProductStore = merge(EventEmitter::,
 
   emitChange: ->
     @emit CHANGE_EVENT
 
-  ###*
-  @param {function} callback
-  ###
   addChangeListener: (callback) ->
     @on CHANGE_EVENT, callback
+
+  removeChangeListener: (callback) ->
+    @removeListener CHANGE_EVENT, callback
 
   get: ->
     _product
@@ -64,7 +65,8 @@ ProductStore.dispatchToken = AppDispatcher.register((payload) ->
     _boughtProduct = true
     # TODO BEN Stores something in a cookie or SessionStorage or LocalStorage
   else
-    console.log 'Action not registered'
+    return console.log "Action not registered "
+
   ProductStore.emitChange()
 )
 

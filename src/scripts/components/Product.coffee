@@ -8,8 +8,9 @@ Product = React.createClass
   getInitialState: ->
     ProductStore.get()
 
-  componentDidMount: ->
+  componentWillMount: ->
     ProductStore.addChangeListener @_onChange
+    ProductActionCreators.getProduct this.props.params.productId, 'IamAuserToken'
     return
 
   componentWillUnmount: ->
@@ -17,7 +18,7 @@ Product = React.createClass
     return
 
   render: ->
-    imagePath = "http://localhost:3000" + @.state.master
+    imagePath = 'http://localhost:3000' + @state.master
       .images[ProductStore.getCurrentImageIndex()].large_url
     productDetailSVGOptions =
       version: '1.1'
@@ -53,9 +54,9 @@ Product = React.createClass
         React.DOM.div {},
           React.DOM.p {},
             if ProductStore.showProductDetails()
-              "Product Details on"
+              'Product Details on'
             else
-              "Product Details off"
+              'Product Details off'
           ProductDetails {className: 'product-details'}
           React.DOM.svg productDetailSVGOptions,
             React.DOM.path {d: 'M49.999,9.001C27.392,9.001,9.001,27.393,9.001,50s18.391,40.999,40.998,40.999s41-18.392,41-40.999
@@ -67,9 +68,9 @@ Product = React.createClass
         React.DOM.div {},
           React.DOM.p {},
             if ProductStore.isProductLiked()
-              "Liked"
+              'Liked'
             else
-              "Dislike"
+              'Dislike'
           React.DOM.svg heartSVGOptions,
             React.DOM.path {'fill-rule': 'evenodd', 'clip-rule': 'evenodd', fill: '#333333', d: 'M29.193,5.265c-3.629-3.596-9.432-3.671-13.191-0.288 C12.242,1.594,6.441,1.669,2.81,5.265c-3.741,3.704-3.741,9.709,0,13.415c1.069,1.059,11.053,10.941,11.053,10.941
                  c1.183,1.172,3.096,1.172,4.278,0c0,0,10.932-10.822,11.053-10.941C32.936,14.974,32.936,8.969,29.193,5.265z M27.768,17.268
@@ -110,7 +111,5 @@ Product = React.createClass
 
   _onChange: ->
     @setState(ProductStore.get())
-    
-
 
 module.exports = Product

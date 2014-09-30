@@ -35,3 +35,8 @@ module.exports =
     AppDispatcher.handleViewAction
       type: ProductConstants.BUY_PRODUCT
     API.buyVariant variantId, UserToken
+
+  getProduct: (variantId, userToken) ->
+    AppDispatcher.handleViewAction
+      type: ProductConstants.RECEIVE_RAW_PRODUCT
+      product: API.getVariant variantId, userToken
