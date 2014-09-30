@@ -1,10 +1,10 @@
-`/** @jsx React.DOM */`
-
 # Bring in jQuery and React as a Bower component in the global namespace
-require("script!react/react-with-addons.js")
+React = require "react"
 require("script!jquery/jquery.js")
 
-StarterApp = require("./components/StarterApp.coffee")
+App = require("./components/App.coffee")
+API   = require('./utils/API.coffee')
+ProductActionCreators   = require('./actions/ProductActionCreators.coffee')
+ProductActionCreators.receivedProduct(API.getProduct(1))
 
-React.renderComponent(`<StarterApp />`, document.getElementById('app'))
-
+React.renderComponent(App({}), document.getElementById('app'))
