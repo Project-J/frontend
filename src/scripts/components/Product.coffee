@@ -18,7 +18,7 @@ Product = React.createClass
     return
 
   render: ->
-    imagePath = 'http://localhost:3000' + @state.master
+    imagePath = '/images/' + @state.master
       .images[ProductStore.getCurrentImageIndex()].large_url
     productDetailSVGOptions =
       version: '1.1'
