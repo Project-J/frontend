@@ -12,8 +12,8 @@ ProductDetails = React.createClass
     else
       React.DOM.div {className: 'pd-container'},
         React.DOM.h3 {},
-          @.state.master.name
+          @state.master.name
         React.DOM.p {}
-          @.state.master.description
+          @state.master.description
 
 module.exports = ProductDetails

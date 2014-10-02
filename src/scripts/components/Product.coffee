@@ -1,7 +1,7 @@
-React = require('react')
-ProductStore = require('../stores/ProductStore.coffee')
-ProductActionCreators   = require('../actions/ProductActionCreators.coffee')
-ProductDetails   = require('./ProductDetails.coffee')
+React = require 'react'
+ProductStore = require '../stores/ProductStore.coffee'
+ProductActionCreators = require '../actions/ProductActionCreators.coffee'
+ProductDetails = require './ProductDetails.coffee'
 
 Product = React.createClass
 
@@ -43,21 +43,19 @@ Product = React.createClass
     React.DOM.div {className: 'bs-masthead'},
       React.DOM.div {className: 'container'},
         React.DOM.h1 {},
-          @.props.name
-        React.DOM.p {className: 'lead'},
-          @.state.name
+          @state.name
         React.DOM.button {onClick: @_previousImage, className: 'btn btn-primary'},
-          "<-"
+          '<-'
         React.DOM.img {src: imagePath},
         React.DOM.button {onClick: @_nextImage, className: 'btn btn-primary'},
-          "->"
+          '->'
         React.DOM.div {},
           React.DOM.p {},
+            'Product Details '
             if ProductStore.showProductDetails()
-              'Product Details on'
+              'on'
             else
-              'Product Details off'
-          ProductDetails {className: 'product-details'}
+              'off'
           React.DOM.svg productDetailSVGOptions,
             React.DOM.path {d: 'M49.999,9.001C27.392,9.001,9.001,27.393,9.001,50s18.391,40.999,40.998,40.999s41-18.392,41-40.999
                                 S72.606,9.001,49.999,9.001z M49.999,86.999c-20.4,0-36.998-16.598-36.998-36.999s16.598-36.999,36.998-36.999
@@ -65,6 +63,7 @@ Product = React.createClass
                                 c-0.227,0-0.41-0.184-0.41-0.411v-5.428c0-0.227,0.184-0.411,0.41-0.411h5.74v-28.93h-5.799c-0.227,0-0.408-0.184-0.408-0.409
                                 v-5.551c0-0.228,0.182-0.41,0.408-0.41h13.596c0.227,0,0.41,0.183,0.41,0.41v34.89h5.979C61.608,71.938,61.794,72.122,61.794,72.349
                                 z M43.685,26.502c0-3.452,2.797-6.25,6.25-6.25c3.451,0,6.25,2.798,6.25,6.25s-2.799,6.25-6.25,6.25 C46.481,32.752,43.685,29.954,43.685,26.502z'}
+          ProductDetails {className: 'product-details'}
         React.DOM.div {},
           React.DOM.p {},
             if ProductStore.isProductLiked()
@@ -80,13 +79,13 @@ Product = React.createClass
         React.DOM.div {},
           React.DOM.p {},
             if ProductStore.boughtProduct()
-              "YAY You now own this product"
+              'YAY You now own this product'
           React.DOM.button {onClick: @_buy, className: 'btn btn-success btn-lg'},
-            "BUY" + @.state.master.display_price
+            "BU #{@state.master.display_price}"
 
   _buy: ->
     # TODO: (@helveticafire) Check if they recently purchase this same item
-    ProductActionCreators.buyProduct(@.state.master.id, 'IamAuserToken')
+    ProductActionCreators.buyProduct(@state.master.id, 'IamAuserToken')
     return
 
   _nextImage: ->
@@ -104,9 +103,9 @@ Product = React.createClass
   _toggleLike: ->
     # TODO: (@helveticafire) Add user login/ User creation view
     if ProductStore.isProductLiked()
-      ProductActionCreators.dislikeProduct(@.state.master.id, 'IamAuserToken')
+      ProductActionCreators.dislikeProduct(@state.master.id, 'IamAuserToken')
     else
-      ProductActionCreators.likeProduct(@.state.master.id, 'IamAuserToken')
+      ProductActionCreators.likeProduct(@state.master.id, 'IamAuserToken')
     return
 
   _onChange: ->
