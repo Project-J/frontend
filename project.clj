@@ -13,7 +13,7 @@
     :builds [{:id "frontend"
               :source-paths ["src"]
               :compiler {
-                :output-to "frontend.js"
+                :output-to "app.js"
                 :output-dir "out"
                 :optimizations :none
                 :source-map true}}]})
