@@ -1,6 +1,6 @@
 (defproject frontend "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://example.com/FIXME"
+  :description "Project J frontend react and flux architecture"
+  :url "https://www.projectj.co"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2311"]]
@@ -10,7 +10,7 @@
   :source-paths ["src"]
 
   :cljsbuild {
-    :builds [{:id "frontend"
+    :builds [{:id "dev"
               :source-paths ["src"]
               :compiler {
                 :output-to "app.js"
